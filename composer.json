@@ -1,0 +1,20 @@
+{
+  "name": "rodkin-yevhenii/tiger_pro",
+  "description": "Wordpress site with Gutenberg blocks",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Yevhenii Rodkin",
+      "email": "rodkin.yevhenii@gmail.com"
+    }
+  ],
+  "require": {
+    "squizlabs/php_codesniffer": "^3.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tiger\\": "wp-content/themes/tigerpro/inc/"
+    }
+  }
+}
