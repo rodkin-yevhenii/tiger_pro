@@ -5,7 +5,11 @@ $autoloadFile = ABSPATH . "/vendor/autoload.php";
 if (file_exists($autoloadFile)) {
     require_once($autoloadFile);
 } else {
-    die(__("php composer is required", 'hpractice'));
+    die(__("php composer is required", 'tiger'));
+}
+
+if (!class_exists(ACF::class)) {
+    die(__("ACF plugin is required", 'tiger'));
 }
 
 /**
