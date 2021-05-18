@@ -1,7 +1,7 @@
 const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 // Paths
 const assetsPath = 'wp-content/themes/tigerpro/frontend/'
@@ -81,5 +81,8 @@ module.exports = (env, argv) => {
       }
     },
     plugins: plugins(),
+    devServer: {
+      port: 4200
+    },
   }
 }
