@@ -1,5 +1,6 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // Paths
 const assetsPath = 'wp-content/themes/tigerpro/frontend/'
@@ -19,14 +20,39 @@ const paths = {
   }
 }
 
+// HTML files
+const htmlFiles = [
+  'index',
+  '404',
+  '500',
+  'contacts',
+  'geodesy',
+  'geology',
+  'land-management',
+]
+
 // Config
 module.exports = (env, argv) => {
   // Functions
   const isDev = argv.mode === 'development'
   const isProd = !isDev
   const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
+  const plugins = () => {
+    const plugins = [
+      new CleanWebpackPlugin(),
+    ]
 
-  console.log(argv.mode)
+    htmlFiles.forEach(name => {
+      plugins.push(
+        new HtmlWebpackPlugin({
+          filename: name + '.html',
+          template: name + '.html'
+        })
+      )
+    })
+
+    return plugins
+  }
 
   return {
     mode: argv.mode,
@@ -47,8 +73,6 @@ module.exports = (env, argv) => {
         '@img': paths.src.img,
       }
     },
-    plugins: [
-      new CleanWebpackPlugin(),
-    ]
+    plugins: plugins(),
   }
 }
