@@ -1,4 +1,5 @@
 const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // Paths
 const assetsPath = 'wp-content/themes/tigerpro/frontend/'
@@ -35,8 +36,8 @@ module.exports = (env, argv) => {
       forms: './js/forms.js'
     },
     output: {
-      filename: [name].js,
-      path: paths.dist.js
+      filename: 'js/[name].js',
+      path: paths.dist.root
     },
     resolve: {
       alias: {
@@ -46,5 +47,8 @@ module.exports = (env, argv) => {
         '@img': paths.src.img,
       }
     },
+    plugins: [
+      new CleanWebpackPlugin(),
+    ]
   }
 }
