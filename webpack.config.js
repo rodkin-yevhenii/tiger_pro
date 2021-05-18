@@ -2,6 +2,7 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // Paths
 const assetsPath = 'wp-content/themes/tigerpro/frontend/'
@@ -46,6 +47,9 @@ module.exports = (env, argv) => {
           { from: paths.src.root + "/favicon.png", to: paths.dist.root },
           { from: paths.src.img, to: paths.dist.img },
         ]
+      }),
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].css'
       })
     ]
 
@@ -70,19 +74,57 @@ module.exports = (env, argv) => {
     },
     output: {
       filename: 'js/[name].js',
-      path: paths.dist.root
+      path: paths.dist.root,
+      publicPath: '/'
     },
     resolve: {
       alias: {
         '@src': paths.src.root,
         '@js': paths.src.js,
         '@css': paths.src.css,
-        '@img': paths.src.img,
+        '@img': paths.src.img
       }
+    },
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: (resourcePath, context) => {
+                  return path.relative(path.dirname(resourcePath), context) + '/';
+                }
+              },
+            },
+            'css-loader',
+            'resolve-url-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
+        },
+        {
+          test: /\.css$/,
+          use: [ MiniCssExtractPlugin.loader, 'css-loader']
+        },
+        {
+          test: /\.(png|jpg|svg|gif)$/,
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]',
+          },
+        },
+      ]
     },
     plugins: plugins(),
     devServer: {
-      port: 4200
+      port: 4200,
+      hot: isDev
     },
   }
 }
