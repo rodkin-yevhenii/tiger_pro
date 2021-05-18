@@ -44,6 +44,7 @@ module.exports = (env, argv) => {
       new CopyPlugin({
         patterns: [
           { from: paths.src.root + "/favicon.png", to: paths.dist.root },
+          { from: paths.src.img, to: paths.dist.img },
         ]
       })
     ]
