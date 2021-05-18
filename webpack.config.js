@@ -1,6 +1,7 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 // Paths
 const assetsPath = 'wp-content/themes/tigerpro/frontend/'
@@ -40,6 +41,11 @@ module.exports = (env, argv) => {
   const plugins = () => {
     const plugins = [
       new CleanWebpackPlugin(),
+      new CopyPlugin({
+        patterns: [
+          { from: paths.src.root + "/favicon.png", to: paths.dist.root },
+        ]
+      })
     ]
 
     htmlFiles.forEach(name => {
