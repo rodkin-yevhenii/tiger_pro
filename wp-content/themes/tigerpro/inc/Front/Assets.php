@@ -94,20 +94,8 @@ class Assets
     private function getStylesArray(): array
     {
         $css[] = [
-            'handle' => 'fancybox',
-            'src' => DIST_URI . 'css/jquery.fancybox.min.css'
-        ];
-        $css[] = [
-            'handle' => 'magnific-popup',
-            'src' => DIST_URI . 'css/magnific-popup.css'
-        ];
-        $css[] = [
-            'handle' => 'slick',
-            'src' => DIST_URI . 'css/slick.css'
-        ];
-        $css[] = [
             'handle' => 'tiger',
-            'src' => DIST_URI . 'css/style.css'
+            'src' => DIST_URI . 'css/main.css'
         ];
 
         return $css;
@@ -119,7 +107,7 @@ class Assets
     public function jQueryInit(): void
     {
         wp_deregister_script('jquery');
-        wp_register_script('jquery', DIST_URI . 'js/jquery-3.1.1.min.js', [], '3.1.1', true);
+        wp_register_script('jquery', DIST_URI . 'js/jquery.js', [], '3.1.1', true);
         wp_enqueue_script('jquery');
     }
 
@@ -131,49 +119,9 @@ class Assets
     private function getScriptsArray(): array
     {
         $scripts[] = [
-            'handle' => 'inputmask',
-            'src' => DIST_URI . 'js/jquery.inputmask.bundle.min.js',
-            'deps' => 'jquery'
-        ];
-        $scripts[] = [
-            'handle' => 'fitvids',
-            'src' => DIST_URI . 'js/jquery.fitvids.js',
-            'deps' => 'inputmask'
-        ];
-        $scripts[] = [
-            'handle' => 'easing',
-            'src' => DIST_URI . 'js/jquery.easing.js',
-            'deps' => 'fitvids'
-        ];
-        $scripts[] = [
-            'handle' => 'slick',
-            'src' => DIST_URI . 'js/slick.min.js',
-            'deps' => 'easing'
-        ];
-        $scripts[] = [
-            'handle' => 'magnific-popup',
-            'src' => DIST_URI . 'js/jquery.magnific-popup.min.js',
-            'deps' => 'slick'
-        ];
-        $scripts[] = [
-            'handle' => 'fancybox',
-            'src' => DIST_URI . 'js/jquery.fancybox.min.js',
-            'deps' => 'magnific-popup'
-        ];
-        $scripts[] = [
-            'handle' => 'validate',
-            'src' => DIST_URI . 'js/jquery.validate.min.js',
-            'deps' => 'fancybox'
-        ];
-        $scripts[] = [
-            'handle' => 'additional-methods',
-            'src' => DIST_URI . 'js/additional-methods.js',
-            'deps' => 'validate'
-        ];
-        $scripts[] = [
             'handle' => 'forms',
             'src' => DIST_URI . 'js/forms.js',
-            'deps' => 'additional-methods'
+            'deps' => 'jquery'
         ];
         $scripts[] = [
             'handle' => 'tiger',
