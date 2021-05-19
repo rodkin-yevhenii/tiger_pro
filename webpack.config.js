@@ -142,6 +142,7 @@ return {
               },
             },
             'css-loader',
+            'postcss-loader',
             'resolve-url-loader',
             {
               loader: 'sass-loader',
