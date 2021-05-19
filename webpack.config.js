@@ -71,7 +71,38 @@ module.exports = (env, argv) => {
     return plugins
   }
 
-  return {
+const babelOptions = preset => {
+  const opts = {
+    presets: [
+      '@babel/preset-env'
+    ],
+    plugins: [
+      '@babel/plugin-proposal-class-properties'
+    ]
+  }
+
+  if (preset) {
+    opts.presets.push(preset)
+  }
+
+  return opts
+}
+
+const jsLoaders = () => {
+  const loaders = [{
+    loader: 'babel-loader',
+    options: babelOptions()
+  }]
+
+  if (isDev) {
+    loaders.push('eslint-loader')
+  }
+
+  return loaders
+}
+
+
+return {
     mode: argv.mode,
     context: paths.src.root,
     entry: {
@@ -97,17 +128,7 @@ module.exports = (env, argv) => {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          use: {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                '@babel/preset-env'
-              ],
-              plugins: [
-                '@babel/plugin-proposal-class-properties'
-              ]
-            }
-          }
+          use: jsLoaders()
         },
         {
           test: /\.scss$/,
@@ -149,5 +170,8 @@ module.exports = (env, argv) => {
       hot: isDev
     },
     devtool: isDev ? 'source-map' : 'eval',
+    externals: {
+      jquery: "jQuery",
+    }
   }
 }
