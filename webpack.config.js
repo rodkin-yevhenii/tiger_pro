@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack')
 
 // Paths
 const assetsPath = 'wp-content/themes/tigerpro/frontend/'
@@ -50,7 +51,12 @@ module.exports = (env, argv) => {
       }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css'
-      })
+      }),
+      new webpack.ProvidePlugin( {
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
+      } )
     ]
 
     htmlFiles.forEach(name => {
@@ -69,8 +75,9 @@ module.exports = (env, argv) => {
     mode: argv.mode,
     context: paths.src.root,
     entry: {
-      main: './js/main.js',
-      forms: './js/forms.js'
+      main: './js/index.js',
+      jquery: 'jquery'
+      // forms: './js/forms.js'
     },
     output: {
       filename: 'js/[name].js',
@@ -126,5 +133,6 @@ module.exports = (env, argv) => {
       port: 4200,
       hot: isDev
     },
+    devtool: isDev ? 'source-map' : 'eval',
   }
 }

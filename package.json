@@ -36,5 +36,15 @@
       "node_modules/**",
       "**/vendor/**.js"
     ]
+  },
+  "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
+    "fitvids.1.1.0": "^1.1.0",
+    "inputmask": "^5.0.5",
+    "jquery": "^3.6.0",
+    "jquery-validation": "^1.19.3",
+    "magnific-popup": "^1.1.0",
+    "slick-carousel": "^1.8.1",
+    "validate": "^5.1.0"
   }
 }
