@@ -1,0 +1,7 @@
+node_modules
+dist
+assets
+bundled
+libs
+**/src/sass/**/*.scss
+!**/src/sass/blocks/**/*.scss

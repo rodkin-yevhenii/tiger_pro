@@ -1,0 +1,30 @@
+{
+    "extends": [
+        "stylelint-config-recommended-scss",
+        "stylelint-config-sass-guidelines",
+        "stylelint-config-rational-order"
+    ],
+    "rules": {
+
+        "order/properties-alphabetical-order": null,
+        "declaration-empty-line-before": "never",
+        "max-nesting-depth": [
+            3,
+            {
+                "ignore": ["pseudo-classes"]
+            }
+        ],
+        "max-empty-lines": 1,
+        "selector-class-pattern": [
+            "",
+            {
+                "message":
+                "TODO: Temporary no rules for selectors and class names"
+            }
+        ],
+        "string-quotes": "double",
+        "number-leading-zero": "never",
+        "indentation": [4],
+        "scss/at-extend-no-missing-placeholder": null
+    }
+}

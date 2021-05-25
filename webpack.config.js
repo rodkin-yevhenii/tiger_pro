@@ -2,24 +2,24 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
 
 // Paths
-const assetsPath = 'wp-content/themes/tigerpro/frontend/'
+const srcRootPath = './wp-content/themes/tigerpro/frontend/src'
+const assetsRootPath = './wp-content/themes/tigerpro/frontend/dist'
 const paths = {
-  assets: path.resolve(__dirname, assetsPath),
   src: {
-    root: path.resolve(__dirname, assetsPath + 'src'),
-    js: path.resolve(__dirname, assetsPath + 'src/js'),
-    css: path.resolve(__dirname, assetsPath + 'src/css'),
-    img: path.resolve(__dirname, assetsPath + 'src/img')
+    root: path.resolve(__dirname, srcRootPath),
+    js: path.resolve(__dirname, srcRootPath + '/js'),
+    css: path.resolve(__dirname, srcRootPath + '/css'),
+    img: path.resolve(__dirname, srcRootPath + '/img')
   },
   dist: {
-    root: path.resolve(__dirname, assetsPath + 'dist'),
-    js: path.resolve(__dirname, assetsPath + 'dist/js'),
-    css: path.resolve(__dirname, assetsPath + 'dist/css'),
-    img: path.resolve(__dirname, assetsPath + 'dist/img')
+    root: path.resolve(__dirname, assetsRootPath),
+    js: path.resolve(__dirname, assetsRootPath + '/js'),
+    css: path.resolve(__dirname, assetsRootPath + '/css'),
+    img: path.resolve(__dirname, assetsRootPath + '/img')
   }
 }
 
@@ -38,32 +38,34 @@ const htmlFiles = [
 module.exports = (env, argv) => {
   // Functions
   const isDev = argv.mode === 'development'
-  const isProd = !isDev
-  const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
   const plugins = () => {
     const plugins = [
       new CleanWebpackPlugin(),
       new CopyPlugin({
         patterns: [
-          { from: paths.src.root + "/favicon.png", to: paths.dist.root },
-          { from: paths.src.img, to: paths.dist.img },
+          {
+            from: paths.src.root + '/favicon.png',
+            to: paths.dist.root
+          },
+          { from: paths.src.img, to: paths.dist.img }
         ]
       }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css'
       }),
-      new webpack.ProvidePlugin( {
+      new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery'
-      } )
+      })
     ]
 
     htmlFiles.forEach(name => {
       plugins.push(
         new HtmlWebpackPlugin({
           filename: name + '.html',
-          template: name + '.html'
+          template: name + '.html',
+          inject: 'body'
         })
       )
     })
@@ -71,44 +73,40 @@ module.exports = (env, argv) => {
     return plugins
   }
 
-const babelOptions = preset => {
-  const opts = {
-    presets: [
-      '@babel/preset-env'
-    ],
-    plugins: [
-      '@babel/plugin-proposal-class-properties'
+  const babelOptions = preset => {
+    const opts = {
+      presets: ['@babel/preset-env'],
+      plugins: ['@babel/plugin-proposal-class-properties']
+    }
+
+    if (preset) {
+      opts.presets.push(preset)
+    }
+
+    return opts
+  }
+
+  const jsLoaders = () => {
+    const loaders = [
+      {
+        loader: 'babel-loader',
+        options: babelOptions()
+      }
     ]
+
+    if (isDev) {
+      loaders.push('eslint-loader')
+    }
+
+    return loaders
   }
 
-  if (preset) {
-    opts.presets.push(preset)
-  }
-
-  return opts
-}
-
-const jsLoaders = () => {
-  const loaders = [{
-    loader: 'babel-loader',
-    options: babelOptions()
-  }]
-
-  if (isDev) {
-    loaders.push('eslint-loader')
-  }
-
-  return loaders
-}
-
-
-return {
+  return {
     mode: argv.mode,
     context: paths.src.root,
     entry: {
-      main: './js/index.js',
-      jquery: 'jquery'
-      // forms: './js/forms.js'
+      jquery: 'jquery',
+      main: './js/index.js'
     },
     output: {
       filename: 'js/[name].js',
@@ -137,9 +135,11 @@ return {
               loader: MiniCssExtractPlugin.loader,
               options: {
                 publicPath: (resourcePath, context) => {
-                  return path.relative(path.dirname(resourcePath), context) + '/';
+                  return (
+                    path.relative(path.dirname(resourcePath), context) + '/'
+                  )
                 }
-              },
+              }
             },
             'css-loader',
             'postcss-loader',
@@ -153,23 +153,22 @@ return {
           ]
         },
         {
-          test: /\.css$/,
-          use: [ MiniCssExtractPlugin.loader, 'css-loader']
-        },
-        {
           test: /\.(png|jpg|svg|gif)$/,
           loader: 'file-loader',
           options: {
-            name: '[path][name].[ext]',
-          },
-        },
+            name: '[path][name].[ext]'
+          }
+        }
       ]
     },
     plugins: plugins(),
     devServer: {
       port: 4200,
-      hot: isDev
+      contentBase: path.join(__dirname, 'dist'),
+      watchContentBase: true,
+      hot: true
     },
+    target: isDev ? 'web' : 'browserslist',
     devtool: isDev ? 'source-map' : 'eval'
   }
 }
