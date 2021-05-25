@@ -1,3 +1,5 @@
+const $ = window.jQuery
+
 jQuery(document).ready(function ($) {
   const header = $('.header')
   const sectionSlider = $('.section__slider .slider')
@@ -11,8 +13,12 @@ jQuery(document).ready(function ($) {
   if (sectionSlider.length > 0) {
     sectionSlider.each(function (i, slider) {
       const sliderDOM = $(slider)
-      const sliderDOMPrevBtn = sliderDOM.closest('.section').find('.btn-arrow--left')
-      const sliderDOMNextBtn = sliderDOM.closest('.section').find('.btn-arrow--right')
+      const sliderDOMPrevBtn = sliderDOM
+        .closest('.section')
+        .find('.btn-arrow--left')
+      const sliderDOMNextBtn = sliderDOM
+        .closest('.section')
+        .find('.btn-arrow--right')
 
       sliderDOMPrevBtn.on('click', function () {
         sliderDOM.slick('slickPrev')
@@ -90,8 +96,12 @@ jQuery(document).ready(function ($) {
 
     const isCloseMenu =
       (!(target.hasClass('.btn-menu') || target.closest('.btn-menu').length) ||
-      (target.hasClass('.btn-close') || target.closest('.btn-close').length)) &&
-      !(target.hasClass('.menu-mobile__content') || target.closest('.menu-mobile__content').length)
+        target.hasClass('.btn-close') ||
+        target.closest('.btn-close').length) &&
+      !(
+        target.hasClass('.menu-mobile__content') ||
+        target.closest('.menu-mobile__content').length
+      )
 
     if (isCloseMenu) {
       e.stopPropagation()
@@ -99,7 +109,7 @@ jQuery(document).ready(function ($) {
     }
   })
 
-  $(window).on('scroll', function (e) {
+  $(window).on('scroll', function () {
     if (window.scrollY > 0) {
       header.addClass('header--sticky')
     } else {
@@ -113,7 +123,7 @@ jQuery(document).ready(function ($) {
     }
   })
 
-  function openMobileMenu () {
+  function openMobileMenu() {
     btnMenu.addClass('active')
     header.addClass('active')
     mobileMenu.fadeIn(function () {
@@ -122,7 +132,7 @@ jQuery(document).ready(function ($) {
     $(document.body).addClass('not-scrolling')
   }
 
-  function closeMobileMenu () {
+  function closeMobileMenu() {
     btnMenu.removeClass('active')
     header.removeClass('active')
     mobileMenu.removeClass('open')
@@ -154,7 +164,11 @@ jQuery(document).ready(function ($) {
     if (!target.is('a')) {
       e.preventDefault()
       const item = submenu.closest('li')
-      target.closest('.nav').find('li').not(item[0]).removeClass('visible-submenu')
+      target
+        .closest('.nav')
+        .find('li')
+        .not(item[0])
+        .removeClass('visible-submenu')
 
       if (submenu.length > 0) {
         if (!item.hasClass('visible-submenu')) {
@@ -193,7 +207,7 @@ jQuery(document).ready(function ($) {
   initToggleMenu()
 })
 
-function safePropValueOr (obj, path, defaultValue = null) {
+function safePropValueOr(obj, path, defaultValue = null) {
   if (!path) return defaultValue
   let val = path.split('.').reduce((acc, item) => {
     if (!acc) return acc
@@ -208,8 +222,8 @@ function safePropValueOr (obj, path, defaultValue = null) {
   return val
 }
 
-function setPopupContent (id, data) {
-  const popup = $(id)
+function setPopupContent(id, data) {
+  const popup = jQuery(id)
 
   if ($.isEmptyObject(data)) {
     return false
@@ -222,32 +236,32 @@ function setPopupContent (id, data) {
   text && popup.find('.popup-text-js').text(text)
 }
 
-function callbackBeforeOpen () {
+function callbackBeforeOpen() {
   this.st.mainClass = 'mfp-zoom-in'
   document.body.classList.add('fixed')
 }
 
-function callbackBeforeClose () {
+function callbackBeforeClose() {
   const cart = this.contentContainer.find('.cart')
   if (cart.length > 0) {
     $('.product .quantity__input').val(1)
   }
 }
 
-function callbackOpen (e) {
+function callbackOpen() {
   document.body.insertAdjacentHTML(
     'beforeend',
     '<div class="mfp-overlay"></div>'
   )
 }
 
-function callbackClose (e) {
+function callbackClose() {
   const el = document.querySelector('.mfp-overlay')
   document.body.removeChild(el)
   document.body.classList.remove('fixed')
 }
 
-function showPopup (id, data, disabledClose, options) {
+export function showPopup(id, data, disabledClose, options) {
   setPopupContent(id, data)
   const baseOptions = {
     items: {
@@ -271,20 +285,21 @@ function showPopup (id, data, disabledClose, options) {
   $.magnificPopup.open(baseOptions)
 }
 
-function scrollTo (offset) {
-  $('html, body').stop().animate({
-    scrollTop: offset
-  }, 1000, 'linear')
+function scrollTo(offset) {
+  $('html, body').stop().animate(
+    {
+      scrollTop: offset
+    },
+    1000,
+    'linear'
+  )
 }
 
-function initInputMask (inputPhone) {
+function initInputMask(inputPhone) {
   if (inputPhone.length) {
     $.each(inputPhone, function (index, input) {
       if (!$(input).inputmask('hasMaskedValue')) {
-        $(input).inputmask(
-          '+38 (999) 999-99-99',
-          { placeholder: '_' }
-        )
+        $(input).inputmask('+38 (999) 999-99-99', { placeholder: '_' })
       }
     })
   } else {
@@ -292,13 +307,13 @@ function initInputMask (inputPhone) {
   }
 }
 
-function destroySlider (slider) {
+function destroySlider(slider) {
   if (slider.length && slider.hasClass('slick-initialized')) {
     slider.slick('unslick')
   }
 }
 
-function initPopupImageGallery (gallery) {
+function initPopupImageGallery(gallery) {
   if (!(gallery.length > 0)) {
     return false
   }
@@ -331,7 +346,7 @@ function initPopupImageGallery (gallery) {
   })
 }
 
-function initScrollToAnchor () {
+function initScrollToAnchor() {
   $(document).on('click', 'a[data-anchor]', function (e) {
     e.preventDefault()
     const link = $(e.currentTarget)
@@ -348,7 +363,7 @@ function initScrollToAnchor () {
     scrollTo(offset)
   })
 
-  $(window).on('load scroll', function (e) {
+  $(window).on('load scroll', function () {
     const scrollTop = window.pageYOffset
 
     $('[data-anhor-item]').each(function (i, el) {
@@ -376,12 +391,15 @@ function initScrollToAnchor () {
     })
   })
 
-  function getFirstChildTopOffset (el) {
+  function getFirstChildTopOffset(el) {
     if (el.is(':first-child')) {
       if (parseInt(el.css('padding-top'), 10) === 0) {
         return parseInt(el.closest('section').css('padding-top'))
       } else {
-        return parseInt(el.css('padding-top')) + parseInt(el.closest('section').css('padding-top'))
+        return (
+          parseInt(el.css('padding-top')) +
+          parseInt(el.closest('section').css('padding-top'))
+        )
       }
     } else {
       return 0
@@ -389,13 +407,15 @@ function initScrollToAnchor () {
   }
 }
 
-function initToggleMenu () {
+function initToggleMenu() {
   $(document).on('click', '[data-toggle]', function (e) {
     const el = $(e.target)
     const menu = $(e.currentTarget)
     const menuItems = $(e.currentTarget).find('ul')
-    const condition = (el.is('[data-toggle-menu]') || el.closest('[data-toggle-menu]').length > 0) ||
-                      (el.is('a[data-anchor]'))
+    const condition =
+      el.is('[data-toggle-menu]') ||
+      el.closest('[data-toggle-menu]').length > 0 ||
+      el.is('a[data-anchor]')
     const wWidth = $(window).width()
 
     if (condition && wWidth < 560) {
@@ -409,14 +429,14 @@ function initToggleMenu () {
     }
   })
 
-  $(window).on('resize', function (e) {
+  $(window).on('resize', function () {
     const menu = $('[data-toggle]')
     menu.removeClass('opened')
     menu.find('ul').attr('style', '')
   })
 }
 
-function setBtnTemplate (dir = 'left') {
+function setBtnTemplate(dir = 'left') {
   return `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--${dir}">
                 <svg class="icon">
                     <use xlink:href="/wp-content/themes/tigerpro/frontend/src/img/icons-sprite.svg#icon-arrow-${dir}"></use>
@@ -425,7 +445,8 @@ function setBtnTemplate (dir = 'left') {
 }
 
 const getLoaderTemplate = function () {
-  return '<div class="loader">\n' +
+  return (
+    '<div class="loader">\n' +
     '    <div ></div>\n' +
     '    <svg class="icon icon--extra-lg"\n' +
     '         version="1.1" id="L9"\n' +
@@ -445,9 +466,10 @@ const getLoaderTemplate = function () {
     '          </path>\n' +
     '    </svg>\n' +
     '</div>'
+  )
 }
 
-function setLoader (container, loading) {
+export function setLoader(container, loading) {
   if (container.length <= 0) {
     return false
   }
@@ -460,21 +482,25 @@ function setLoader (container, loading) {
   }
 }
 
-(function ($) {
-  $.fn.inputNumber = function (inputNumber, callback) {
+;(function ($) {
+  $.fn.inputNumber = function (inputNumber) {
     this.addClass('number')
-    this.on('input keydown keyup mousedown mouseup select contextmenu drop', function () {
-      if (inputNumber(this.value)) {
-        this.oldValue = this.value
-        this.oldSelectionStart = this.selectionStart
-        this.oldSelectionEnd = this.selectionEnd
-      } else if (this.hasOwnProperty('oldValue')) {
-        this.value = this.oldValue
-        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd)
-      } else {
-        this.value = ''
+    this.on(
+      'input keydown keyup mousedown mouseup select contextmenu drop',
+      function () {
+        if (inputNumber(this.value)) {
+          this.oldValue = this.value
+          this.oldSelectionStart = this.selectionStart
+          this.oldSelectionEnd = this.selectionEnd
+          // eslint-disable-next-line no-prototype-builtins
+        } else if (this.hasOwnProperty('oldValue')) {
+          this.value = this.oldValue
+          this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd)
+        } else {
+          this.value = ''
+        }
       }
-    })
+    )
 
     this.on('input keydown keyup mousedown mouseup', function () {
       const min = +this.getAttribute('min')
@@ -491,4 +517,4 @@ function setLoader (container, loading) {
 
     return this
   }
-}(jQuery))
+})(jQuery)

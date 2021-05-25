@@ -1,20 +1,20 @@
 .popup {
   $popup: &;
-  
+
   margin: 6.4rem auto 3.2rem;
   max-width: 103.2rem;
-  
+
   @media only screen and(max-width: $container-desktop-sm) {
     max-width: 96rem;
   }
-  
+
   &--sm {
     max-width: 48rem;
-    
+
     #{$popup}{
       &__inner {
         padding: 5.2rem 4.5rem;
-  
+
         @media only screen and(max-width: $container-tablet-sm) {
           padding-left: 2.4rem;
           padding-right: 2.4rem;
@@ -22,7 +22,7 @@
       }
     }
   }
-  
+
   &__inner {
     margin: auto;
     padding: 7.2rem 7.2rem;
@@ -30,18 +30,18 @@
     border-radius: .8rem;
     position: relative;
     overflow: hidden;
-    
+
     @media only screen and(max-width: $container-desktop-sm) {
       padding-left: 6.4rem;
       padding-right: 6.4rem;
     }
-  
+
     @media only screen and(max-width: $container-tablet-sm) {
       padding-left: 2.4rem;
       padding-right: 2.4rem;
     }
   }
-  
+
   &__icon {
     text-align: center;
     font-size: 4.8rem;
@@ -51,25 +51,25 @@
   &__content {
     p {
       margin-bottom: 0.8rem;
-      
+
       &:last-child {
         margin-bottom: 0;
       }
     }
-    
+
     .list {
       margin-top: 1.6rem;
-      
+
       &:not(:last-child){
         margin-bottom: 1.6rem;
       }
-      
+
       &:first-child {
         margin-top: 0;
       }
     }
   }
-  
+
   &__order {
     display: flex;
     flex-direction: column;
@@ -77,57 +77,57 @@
     justify-content: center;
     text-align: center;
     margin: 4rem 0;
-    
+
     p {
       &:not(:last-child){
         margin-bottom: 0.4rem;
       }
     }
   }
-  
+
   &__contacts {
     margin-top: 7.8rem;
-    
+
     &-items {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       margin: 0 -1.6rem;
-  
+
       @media only screen and(max-width: $container-tablet-sm) {
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
       }
     }
-    
+
     &-item {
       margin: 0 1.6rem;
-  
+
       @media only screen and(max-width: $container-tablet) {
         width: calc(50% - 1.6rem);
         margin-bottom: 1.6em;
       }
-      
+
       @media only screen and(max-width: $container-tablet-sm) {
         width: auto;
         flex: 1;
-        
+
         &:last-child {
           margin-bottom: 0;
         }
       }
     }
   }
-  
+
   &__actions {
     margin-top: 4.8rem;
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
   }
-  
+
 }
 
 .mfp-zoom-in .mfp-with-anim {
@@ -162,12 +162,12 @@ button.mfp-close {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 2.4rem;
-  background-image: url("/wp-content/themes/tigerpro/frontend/src/img/icons/close.svg");
+  background-image: url("../../img/icons/close.svg");
   width: 3rem;
   height: 3rem;
   right: 3rem;
   top: 3rem;
-  
+
   &:active, &:focus {
     transform: none;
     right: 3rem;
@@ -176,7 +176,7 @@ button.mfp-close {
 }
 
 .mfp-gallery button.mfp-close {
-  background-image: url("/wp-content/themes/tigerpro/frontend/src/img/icons/close-light.svg");
+  background-image: url("../../img/icons/close-light.svg");
 }
 
 .mfp-container {
@@ -194,11 +194,11 @@ button.mfp-close {
     top: 50%;
     transform: translateY(-50%);
     z-index: 2000;
-    
+
     &--right {
       right: 1.5rem;
     }
-    
+
     &--left {
       left: 1.5rem;
     }

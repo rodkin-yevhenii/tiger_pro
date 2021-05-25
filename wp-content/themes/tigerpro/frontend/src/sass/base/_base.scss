@@ -43,7 +43,7 @@ body {
   background-color: $color-white;
   min-height: 100vh;
   min-width: 280px;
-  
+
   &.fixed {
     overflow: hidden;
   }
@@ -91,7 +91,7 @@ img[src=""] {
   display: flex;
   flex-direction: column;
   flex: 1;
-  
+
   @media only screen and (max-width: $container-mobile-lg){
     padding-top: 6.8rem;
   }
@@ -162,7 +162,7 @@ img[src=""] {
   &-prev {
     left: -1.5rem;
     transform: translateY(-50%);
-    background-image: url("/wp-content/themes/tigerpro/frontend/src/img/icons/chevron-left.svg");
+    background-image: url("../../img/icons/chevron-left.svg");
 
     @media only screen and (max-width: $container-tablet-sm){
       left: 0;
@@ -174,7 +174,7 @@ img[src=""] {
   &-next {
     right: -1.5rem;
     transform: translateY(-50%);
-    background-image: url("/wp-content/themes/tigerpro/frontend/src/img/icons/chevron-right.svg");
+    background-image: url("../../img/icons/chevron-right.svg");
 
     @media only screen and (max-width: $container-tablet-sm){
       right: 0;
@@ -203,12 +203,12 @@ img[src=""] {
   justify-content: center;
   border-radius: .4rem;
   overflow: hidden;
-  
+
   img {
     display: block;
     max-width: 100%;
   }
-  
+
   &--centered {
     margin: auto 0;
   }

@@ -1,3 +1,6 @@
+import { setLoader, showPopup } from './main'
+
+const $ = window.jQuery
 const API = {
   sendForm: function (data) {
     return new Promise(function (resolve, reject) {
@@ -7,17 +10,19 @@ const API = {
         cache: false,
         dataType: 'json',
         data
-      }).done(function (response) {
-        if (!response.status) {
-          reject({
-            title: response.error.title,
-            text: response.error.message
-          })
-        }
-        resolve(response.data)
-      }).fail(function (err) {
-        reject(err)
       })
+        .done(function (response) {
+          if (!response.status) {
+            reject({
+              title: response.error.title,
+              text: response.error.message
+            })
+          }
+          resolve(response.data)
+        })
+        .fail(function (err) {
+          reject(err)
+        })
     })
   }
 }
@@ -29,17 +34,14 @@ jQuery(document).ready(function ($) {
     ignore: '.not-validate',
     submitHandler: handleFormSubmit,
     focusInvalid: false,
-    invalidHandler: function (form, validator) {
-    },
+    invalidHandler: function (form, validator) {},
     highlight: function (element, errorClass, validClass) {
       $(element).addClass(errorClass).removeClass(validClass)
-      $(element).closest('.form__field')
-        .addClass(errorClass)
+      $(element).closest('.form__field').addClass(errorClass)
     },
     unhighlight: function (element, errorClass, validClass) {
       $(element).removeClass(errorClass).addClass(validClass)
-      $(element).closest('.form__field')
-        .removeClass(errorClass)
+      $(element).closest('.form__field').removeClass(errorClass)
     },
     rules: {
       name: {
@@ -69,19 +71,21 @@ jQuery(document).ready(function ($) {
     e.preventDefault()
   })
 
-  function handleFormSubmit (form) {
+  function handleFormSubmit(form) {
     const formEl = $(form)
     setLoader(formEl, true)
-    API.sendForm(formEl.serialize()).then(function () {
-      setLoader(formEl, false)
-      showPopup('#popup-success', null, false, {
-        showCloseBtn: false
+    API.sendForm(formEl.serialize())
+      .then(function () {
+        setLoader(formEl, false)
+        showPopup('#popup-success', null, false, {
+          showCloseBtn: false
+        })
       })
-    }).catch(function () {
-      setLoader(formEl, false)
-      showPopup('#popup-error', null, false, {
-        showCloseBtn: false
+      .catch(function () {
+        setLoader(formEl, false)
+        showPopup('#popup-error', null, false, {
+          showCloseBtn: false
+        })
       })
-    })
   }
 })
