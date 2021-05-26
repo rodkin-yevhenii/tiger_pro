@@ -75,7 +75,17 @@ module.exports = (env, argv) => {
 
   const babelOptions = preset => {
     const opts = {
-      presets: ['@babel/preset-env'],
+      presets: [
+        '@babel/preset-env',
+        [
+          "@babel/preset-react",
+          {
+            pragma: "wp.element.createElement",
+            pragmaFrag: "wp.element.Fragment",
+            development: isDev
+          }
+        ]
+      ],
       plugins: ['@babel/plugin-proposal-class-properties']
     }
 
@@ -106,7 +116,9 @@ module.exports = (env, argv) => {
     context: paths.src.root,
     entry: {
       jquery: 'jquery',
-      main: './js/index.js'
+      main: './js/index.js',
+      blocks: './js/blocks.js',
+      editor: './js/editors.js',
     },
     output: {
       filename: 'js/[name].js',
@@ -169,6 +181,14 @@ module.exports = (env, argv) => {
       hot: true
     },
     target: isDev ? 'web' : 'browserslist',
-    devtool: isDev ? 'source-map' : 'eval'
+    devtool: isDev ? 'source-map' : 'eval',
+    externals: {
+      "@wordpress/blocks": ["wp", "blocks"],
+      "@wordpress/i18n": ["wp", "i18n"],
+      "@wordpress/element": ["wp", "element"],
+      "@wordpress/components": ["wp", "components"],
+      "@wordpress/editor": ["wp", "editor"],
+      "@wordpress/block-editor": ["wp", "blockEditor"],
+    }
   }
 }
