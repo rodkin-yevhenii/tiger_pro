@@ -25,8 +25,8 @@ class Assets
     {
         add_action('wp_head', [$this, 'enqueueStyles'], 1);
         add_filter('style_loader_tag', [$this, 'wrapStyleTag'], 20, 4);
-        add_action('wp_enqueue_scripts', [$this, 'jQueryInit']);
         add_action('wp_enqueue_scripts', [$this, 'enqueueScripts']);
+        add_action('enqueue_block_editor_assets', [$this, 'registerAdminAssets']);
     }
 
     /**
@@ -97,18 +97,12 @@ class Assets
             'handle' => 'tiger',
             'src' => DIST_URI . 'css/main.css'
         ];
+        $css[] = [
+            'handle' => 'gb-style',
+            'src' => DIST_URI . 'css/blocks.css'
+        ];
 
         return $css;
-    }
-
-    /**
-     * Configure jquery.
-     */
-    public function jQueryInit(): void
-    {
-        wp_deregister_script('jquery');
-        wp_register_script('jquery', DIST_URI . 'js/jquery.js', [], '3.1.1', true);
-        wp_enqueue_script('jquery');
     }
 
     /**
@@ -119,17 +113,47 @@ class Assets
     private function getScriptsArray(): array
     {
         $scripts[] = [
-            'handle' => 'forms',
-            'src' => DIST_URI . 'js/forms.js',
+            'handle' => 'tiger',
+            'src' => DIST_URI . 'js/main.js',
             'deps' => 'jquery'
         ];
         $scripts[] = [
-            'handle' => 'tiger',
-            'src' => DIST_URI . 'js/main.js',
-            'deps' => 'forms'
+            'handle' => 'gb-scripts',
+            'src' => DIST_URI . 'js/blocks.js',
+            'deps' => 'jquery'
         ];
 
 
         return $scripts;
+    }
+
+    /**
+     * Register scripts & styles for admin side
+     */
+    public function registerAdminAssets(): void
+    {
+        wp_register_script(
+            'gb-editor-script',
+            DIST_URI . 'js/editor.js',
+            [
+                'wp-blocks',
+                'wp-i18n',
+                'wp-element',
+                'wp-editor',
+                'wp-components',
+                'wp-blob',
+                'lodash',
+                'wp-data',
+                'wp-html-entities',
+                'wp-compose',
+            ]
+        );
+        wp_enqueue_script('gb-editor-script');
+        wp_register_style(
+            'gb-editor-style',
+            DIST_URI . 'css/editor.css',
+            ['wp-edit-blocks']
+        );
+        wp_enqueue_style('gb-editor-style');
     }
 }
