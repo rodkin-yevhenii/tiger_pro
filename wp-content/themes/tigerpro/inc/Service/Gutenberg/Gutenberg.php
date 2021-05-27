@@ -2,6 +2,9 @@
 
 namespace Tiger\Service\Gutenberg;
 
+use Tiger\Service\Gutenberg\Renders\AbstractBlockRenderCallback;
+use Tiger\Service\Gutenberg\Renders\BlockRendererFactory;
+
 /**
  * Class Gutenberg
  *
@@ -16,6 +19,7 @@ class Gutenberg
     public function __construct()
     {
         $this->registerHooks();
+        $this->registerBlocks();
 
         add_editor_style('editor-style.css');
     }
@@ -42,7 +46,52 @@ class Gutenberg
             [
                 [
                     'slug' => 'tiger',
-                    'title' => __('Tiger Blocks', 'v-catena-gutenberg'),
+                    'title' => __('Tiger Blocks', 'tiger'),
+                ],
+            ]
+        );
+    }
+
+    /**
+     * Register gutenberg block for BE side.
+     *
+     * @param string                        $block      Block title.
+     * @param AbstractBlockRenderCallback   $callback   Render callback.
+     * @param array                         $options    Block attributes.
+     */
+    private function registerBlockType(string $block, AbstractBlockRenderCallback $callback, array $options = []): void
+    {
+        register_block_type(
+            'tiger-pro/' . $block,
+            array_merge(
+                [
+                    'render_callback' => $callback,
+                    'editor_script' => 'gb-editor-script',
+                    'editor_style' => 'gb-editor-style',
+                    'blocks' => 'gb-script'
+                ],
+                $options
+            )
+        );
+    }
+
+    /**
+     * Registers Gutenberg block
+     */
+    private function registerBlocks(): void
+    {
+        $this->registerBlockType(
+            'our-works',
+            BlockRendererFactory::renderOurWorksMarkUp(),
+            [
+                'attributes' => [
+                    'items' => [
+                        'type' => 'array',
+                        'default' => [],
+                        'items' => [
+                            'type' => 'object',
+                        ],
+                    ]
                 ],
             ]
         );
