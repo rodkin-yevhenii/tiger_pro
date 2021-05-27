@@ -1,5 +1,16 @@
-.editor-styles-wrapper {
+.definitionwp-block-tiger-pro-definition {
     .subheading {
+        margin: 0;
         font-size: 2.5rem;
+    }
+
+    .heading {
+        margin: 0;
+        font-size: 3.3rem;
+    }
+
+    .block-editor-block-list__layout {
+        display: flex;
+        justify-content: start !important;
     }
 }
