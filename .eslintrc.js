@@ -4,7 +4,7 @@ module.exports = {
     browser: true,
     es6: true
   },
-  extends: ['eslint:recommended', 'prettier', 'plugin:react/recommended'],
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
   globals: {
     jQuery: 'readonly'
   },

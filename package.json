@@ -4,8 +4,8 @@
   "description": "Tiger Pro App",
   "private": true,
   "scripts": {
-    "checkFormat": "prettier --check \"wp-content/themes/tigerpro/frontend/src/**/*.{js,json,css,scss}\"",
-    "format": "prettier --write \"wp-content/themes/tigerpro/frontend/src/**/*.{js,json,css,scss}\"",
+    "checkFormat": "prettier --check \"wp-content/themes/tigerpro/frontend/src/**/*.{json,css,scss}\"",
+    "format": "prettier --write \"wp-content/themes/tigerpro/frontend/src/**/*.{json,css,scss}\"",
     "lint": "npm run lint:js & npm run lint:css",
     "lint:js": "eslint wp-content/themes/tigerpro/frontend/src",
     "lint:css": "stylelint wp-content/themes/tigerpro/frontend/src/**/*.scss --fix --aei",

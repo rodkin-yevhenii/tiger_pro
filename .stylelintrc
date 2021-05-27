@@ -8,6 +8,7 @@
 
         "order/properties-alphabetical-order": null,
         "declaration-empty-line-before": "never",
+        "no-empty-source": null,
         "max-nesting-depth": [
             3,
             {
