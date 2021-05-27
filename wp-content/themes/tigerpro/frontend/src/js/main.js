@@ -123,7 +123,7 @@ jQuery(document).ready(function ($) {
     }
   })
 
-  function openMobileMenu() {
+  function openMobileMenu () {
     btnMenu.addClass('active')
     header.addClass('active')
     mobileMenu.fadeIn(function () {
@@ -132,7 +132,7 @@ jQuery(document).ready(function ($) {
     $(document.body).addClass('not-scrolling')
   }
 
-  function closeMobileMenu() {
+  function closeMobileMenu () {
     btnMenu.removeClass('active')
     header.removeClass('active')
     mobileMenu.removeClass('open')
@@ -207,7 +207,7 @@ jQuery(document).ready(function ($) {
   initToggleMenu()
 })
 
-function safePropValueOr(obj, path, defaultValue = null) {
+function safePropValueOr (obj, path, defaultValue = null) {
   if (!path) return defaultValue
   let val = path.split('.').reduce((acc, item) => {
     if (!acc) return acc
@@ -222,7 +222,7 @@ function safePropValueOr(obj, path, defaultValue = null) {
   return val
 }
 
-function setPopupContent(id, data) {
+function setPopupContent (id, data) {
   const popup = jQuery(id)
 
   if ($.isEmptyObject(data)) {
@@ -236,32 +236,32 @@ function setPopupContent(id, data) {
   text && popup.find('.popup-text-js').text(text)
 }
 
-function callbackBeforeOpen() {
+function callbackBeforeOpen () {
   this.st.mainClass = 'mfp-zoom-in'
   document.body.classList.add('fixed')
 }
 
-function callbackBeforeClose() {
+function callbackBeforeClose () {
   const cart = this.contentContainer.find('.cart')
   if (cart.length > 0) {
     $('.product .quantity__input').val(1)
   }
 }
 
-function callbackOpen() {
+function callbackOpen () {
   document.body.insertAdjacentHTML(
     'beforeend',
     '<div class="mfp-overlay"></div>'
   )
 }
 
-function callbackClose() {
+function callbackClose () {
   const el = document.querySelector('.mfp-overlay')
   document.body.removeChild(el)
   document.body.classList.remove('fixed')
 }
 
-export function showPopup(id, data, disabledClose, options) {
+export function showPopup (id, data, disabledClose, options) {
   setPopupContent(id, data)
   const baseOptions = {
     items: {
@@ -285,7 +285,7 @@ export function showPopup(id, data, disabledClose, options) {
   $.magnificPopup.open(baseOptions)
 }
 
-function scrollTo(offset) {
+function scrollTo (offset) {
   $('html, body').stop().animate(
     {
       scrollTop: offset
@@ -295,7 +295,7 @@ function scrollTo(offset) {
   )
 }
 
-function initInputMask(inputPhone) {
+function initInputMask (inputPhone) {
   if (inputPhone.length) {
     $.each(inputPhone, function (index, input) {
       if (!$(input).inputmask('hasMaskedValue')) {
@@ -307,13 +307,13 @@ function initInputMask(inputPhone) {
   }
 }
 
-function destroySlider(slider) {
+function destroySlider (slider) {
   if (slider.length && slider.hasClass('slick-initialized')) {
     slider.slick('unslick')
   }
 }
 
-function initPopupImageGallery(gallery) {
+function initPopupImageGallery (gallery) {
   if (!(gallery.length > 0)) {
     return false
   }
@@ -346,7 +346,7 @@ function initPopupImageGallery(gallery) {
   })
 }
 
-function initScrollToAnchor() {
+function initScrollToAnchor () {
   $(document).on('click', 'a[data-anchor]', function (e) {
     e.preventDefault()
     const link = $(e.currentTarget)
@@ -391,7 +391,7 @@ function initScrollToAnchor() {
     })
   })
 
-  function getFirstChildTopOffset(el) {
+  function getFirstChildTopOffset (el) {
     if (el.is(':first-child')) {
       if (parseInt(el.css('padding-top'), 10) === 0) {
         return parseInt(el.closest('section').css('padding-top'))
@@ -407,7 +407,7 @@ function initScrollToAnchor() {
   }
 }
 
-function initToggleMenu() {
+function initToggleMenu () {
   $(document).on('click', '[data-toggle]', function (e) {
     const el = $(e.target)
     const menu = $(e.currentTarget)
@@ -436,7 +436,7 @@ function initToggleMenu() {
   })
 }
 
-function setBtnTemplate(dir = 'left') {
+function setBtnTemplate (dir = 'left') {
   return `<span class="btn btn--secondary btn--square btn-arrow btn-arrow--${dir}">
                 <svg class="icon">
                     <use xlink:href="/wp-content/themes/tigerpro/frontend/src/img/icons-sprite.svg#icon-arrow-${dir}"></use>
@@ -469,7 +469,7 @@ const getLoaderTemplate = function () {
   )
 }
 
-export function setLoader(container, loading) {
+export function setLoader (container, loading) {
   if (container.length <= 0) {
     return false
   }
@@ -482,7 +482,7 @@ export function setLoader(container, loading) {
   }
 }
 
-;(function ($) {
+(function ($) {
   $.fn.inputNumber = function (inputNumber) {
     this.addClass('number')
     this.on(
