@@ -21,7 +21,7 @@ $phone = Helpers::getSitePhoneNumber();
     >
     <?php wp_head(); ?>
 </head>
-<body <?php echo is_user_logged_in() ? 'style="margin-top: 46px;"' :''; ?>>
+<body <?php echo is_user_logged_in() && wp_is_mobile() ? 'style="margin-top: 46px;"' :''; ?>>
 <div class="root" id="root">
     <header class="header" <?php echo is_user_logged_in() ? 'style="margin-top: 46px;"' :''; ?>>
         <div class="container">
