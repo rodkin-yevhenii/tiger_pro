@@ -25,7 +25,7 @@ registerBlockType('tiger-pro/definition', {
     'Блок с названием и его определением. Может иметь порядковый номер.',
     'tiger'
   ),
-  category: 'layout',
+  category: 'tiger',
   icon: (
     <svg
       xmlns='http://www.w3.org/2000/svg'

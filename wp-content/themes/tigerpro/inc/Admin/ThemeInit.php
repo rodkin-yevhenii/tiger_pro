@@ -4,6 +4,7 @@ namespace Tiger\Admin;
 
 use Tiger\Front\Assets;
 use Tiger\Front\Front;
+use Tiger\Service\Gutenberg\Gutenberg;
 
 /**
  * Class ThemeInit
@@ -24,6 +25,7 @@ class ThemeInit
         $this->initAssets();
         $this->initMenu();
         $this->initFront();
+        $this->initGutenberg();
 
         $this->registerThemeSettings();
         $this->registerThemeSupport();
@@ -69,6 +71,14 @@ class ThemeInit
     }
 
     /**
+     * Gutenberg blocks.
+     */
+    private function initGutenberg(): void
+    {
+        new Gutenberg();
+    }
+
+    /**
      * Init theme menus.
      */
     private function initMenu(): void
@@ -101,7 +111,6 @@ class ThemeInit
         add_theme_support('post-thumbnails');
         add_post_type_support('page', array('excerpt'));
         add_theme_support('editor-styles');
-        add_editor_style('editor-style.css');
     }
 
     /**
