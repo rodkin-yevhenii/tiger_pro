@@ -5,6 +5,7 @@ namespace Tiger\Admin;
 use Tiger\Front\Assets;
 use Tiger\Front\Front;
 use Tiger\Service\Gutenberg\Gutenberg;
+use Tiger\Service\RestApi\RestApi;
 
 /**
  * Class ThemeInit
@@ -26,6 +27,7 @@ class ThemeInit
         $this->initMenu();
         $this->initFront();
         $this->initGutenberg();
+        $this->initRestApi();
 
         $this->registerThemeSettings();
         $this->registerThemeSupport();
@@ -52,6 +54,11 @@ class ThemeInit
         }
 
         return self::$instance;
+    }
+
+    private function initRestApi(): void
+    {
+        new RestApi();
     }
 
     /**
@@ -118,7 +125,7 @@ class ThemeInit
      */
     private function registerImagesSizes(): void
     {
-        //add_image_size('carousel-item', 328, 358, true);
+        add_image_size('our-works', 328, 272, true);
     }
 
     /**
