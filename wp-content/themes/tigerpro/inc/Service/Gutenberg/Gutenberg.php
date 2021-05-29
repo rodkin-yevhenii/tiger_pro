@@ -85,6 +85,10 @@ class Gutenberg
             BlockRendererFactory::renderOurWorksMarkUp(),
             [
                 'attributes' => [
+                    'heading' => [
+                        'type' => 'strings',
+                        'default' => __('Наши работы', 'tiger'),
+                    ],
                     'items' => [
                         'type' => 'array',
                         'default' => [],

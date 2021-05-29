@@ -11,7 +11,7 @@ use Tiger\Service\Gutenberg\Renders\OurWorks;
 class BlockRendererFactory
 {
     /**
-     * Register video iframe render method.
+     * Register our works slider callback.
      *
      * @return OurWorks\RenderCallback
      */
