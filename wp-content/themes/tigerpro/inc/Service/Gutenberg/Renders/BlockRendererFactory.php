@@ -3,6 +3,7 @@
 namespace Tiger\Service\Gutenberg\Renders;
 
 use Tiger\Service\Gutenberg\Renders\OurWorks;
+use Tiger\Service\Gutenberg\Renders\Contacts;
 
 /**
  * Class BlockRendererFactory
@@ -18,5 +19,15 @@ class BlockRendererFactory
     public static function renderOurWorksMarkUp(): OurWorks\RenderCallback
     {
         return new OurWorks\RenderCallback();
+    }
+
+    /**
+     * Register contact form callback.
+     *
+     * @return Contacts\RenderCallback
+     */
+    public static function renderContactsMarkUp(): Contacts\RenderCallback
+    {
+        return new Contacts\RenderCallback();
     }
 }

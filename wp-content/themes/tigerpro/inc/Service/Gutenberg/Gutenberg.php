@@ -99,5 +99,50 @@ class Gutenberg
                 ],
             ]
         );
+
+        $this->registerBlockType(
+            'contacts',
+            BlockRendererFactory::renderContactsMarkUp(),
+            [
+                'attributes' => [
+                    'isShowBg' => [
+                        'type' => 'bool',
+                        'default' => true,
+                    ],
+                    'formHeading' => [
+                        'type' => 'string',
+                        'default' => __('Закажите бесплатную консультацию, и мы ответим на все Ваши вопросы!', 'tiger'),
+                    ],
+                    'contactsHeading' => [
+                        'type' => 'string',
+                        'default' => __('Бесплатная консультация', 'tiger'),
+                    ],
+                    'btnText' => [
+                        'type' => 'string',
+                        'default' => __('Получить консультацию', 'tiger'),
+                    ],
+                    'phone' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ],
+                    'email' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ],
+                    'telegram' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ],
+                    'viber' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ],
+                    'whatsapp' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ]
+                ],
+            ]
+        );
     }
 }

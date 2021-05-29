@@ -97,10 +97,6 @@ class Assets
             'handle' => 'tiger',
             'src' => DIST_URI . 'css/main.css'
         ];
-        $css[] = [
-            'handle' => 'gb-style',
-            'src' => DIST_URI . 'css/blocks.css'
-        ];
 
         return $css;
     }

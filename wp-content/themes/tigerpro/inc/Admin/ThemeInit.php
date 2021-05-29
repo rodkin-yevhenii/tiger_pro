@@ -4,6 +4,7 @@ namespace Tiger\Admin;
 
 use Tiger\Front\Assets;
 use Tiger\Front\Front;
+use Tiger\Service\Ajax\Ajax;
 use Tiger\Service\Gutenberg\Gutenberg;
 use Tiger\Service\RestApi\RestApi;
 
@@ -28,6 +29,7 @@ class ThemeInit
         $this->initFront();
         $this->initGutenberg();
         $this->initRestApi();
+        $this->initAjax();
 
         $this->registerThemeSettings();
         $this->registerThemeSupport();
@@ -43,22 +45,11 @@ class ThemeInit
     }
 
     /**
-     * Return ThemeInit Instance.
-     *
-     * @return ThemeInit
+     * Register ACF forms for admin side.
      */
-    public static function getInstance(): ThemeInit
+    private function initAcfFields()
     {
-        if (is_null(self::$instance)) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
-    private function initRestApi(): void
-    {
-        new RestApi();
+        new AcfFieldsInit();
     }
 
     /**
@@ -67,6 +58,14 @@ class ThemeInit
     private function initAssets(): void
     {
         new Assets();
+    }
+
+    /**
+     * Init theme menus.
+     */
+    private function initMenu(): void
+    {
+        new Menu();
     }
 
     /**
@@ -85,12 +84,17 @@ class ThemeInit
         new Gutenberg();
     }
 
-    /**
-     * Init theme menus.
-     */
-    private function initMenu(): void
+    private function initRestApi(): void
     {
-        new Menu();
+        new RestApi();
+    }
+
+    /**
+     * Init ajax functionality.
+     */
+    private function initAjax(): void
+    {
+        new Ajax();
     }
 
     /**
@@ -102,9 +106,9 @@ class ThemeInit
             [
                 'page_title' => __('Настройки темы', 'tiger'),
                 'menu_title' => __('Настройки темы', 'tiger'),
-                'menu_slug' => 'theme-settings',
+                'menu_slug'  => 'theme-settings',
                 'capability' => 'edit_posts',
-                'redirect' => false,
+                'redirect'   => false,
             ]
         );
     }
@@ -129,17 +133,23 @@ class ThemeInit
     }
 
     /**
-     * Register ACF forms for admin side.
+     * Return ThemeInit Instance.
+     *
+     * @return ThemeInit
      */
-    private function initAcfFields()
+    public static function getInstance(): ThemeInit
     {
-        new AcfFieldsInit();
+        if (is_null(self::$instance)) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
     }
 
     /**
      * Add support for extra mime-types.
      *
-     * @param array $mimeTypes      Registered mime-types.
+     * @param array $mimeTypes Registered mime-types.
      *
      * @return array
      */
