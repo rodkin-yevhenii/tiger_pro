@@ -91,7 +91,7 @@ class RenderCallback extends AbstractBlockRenderCallback
                                             >
                                                 <img
                                                     src="<?php echo DIST_URI; ?>img/icons/viber.svg"
-                                                    alt="Мы в вайбере"
+                                                    alt="<?php _e('Мы в вайбере', 'tiger'); ?>"
                                                 />
                                             </a>
                                         </li>
@@ -103,7 +103,7 @@ class RenderCallback extends AbstractBlockRenderCallback
                                             >
                                                 <img
                                                     src="<?php echo DIST_URI; ?>img/icons/telegram.svg"
-                                                    alt="Мы в телеграмм"
+                                                    alt="<?php _e('Мы в телеграмм', 'tiger'); ?>"
                                                 />
                                             </a>
                                         </li>
@@ -115,7 +115,7 @@ class RenderCallback extends AbstractBlockRenderCallback
                                             >
                                                 <img
                                                     src="<?php echo DIST_URI; ?>img/icons/whatsapp.svg"
-                                                    alt="Мы в вотсап"
+                                                    alt="<?php _e('Мы в вотсап', 'tiger'); ?>"
                                                 />
                                             </a>
                                         </li>

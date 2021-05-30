@@ -144,5 +144,66 @@ class Gutenberg
                 ],
             ]
         );
+
+        $this->registerBlockType(
+            'contact-info',
+            BlockRendererFactory::renderContactsInfoMarkUp(),
+            [
+                'attributes' => [
+                    'isShowBg' => [
+                        'type' => 'bool',
+                        'default' => true,
+                    ],
+                    'mainHeading' => [
+                        'type' => 'string',
+                        'default' => __('Контакты', 'tiger'),
+                    ],
+                    'addressHeading' => [
+                        'type' => 'string',
+                        'default' => __('Юридический адрес', 'tiger'),
+                    ],
+                    'phoneHeading' => [
+                        'type' => 'string',
+                        'default' => __('Tелефон', 'tiger'),
+                    ],
+                    'emailHeading' => [
+                        'type' => 'string',
+                        'default' => __('Почта', 'tiger'),
+                    ],
+                    'scheduleHeading' => [
+                        'type' => 'string',
+                        'default' => __('Время работы', 'tiger'),
+                    ],
+                    'phone' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ],
+                    'email' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ],
+                    'schedule' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ],
+                    'address' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ],
+                    'telegram' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ],
+                    'viber' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ],
+                    'whatsapp' => [
+                        'type' => 'string',
+                        'default' => '',
+                    ]
+                ],
+            ]
+        );
     }
 }

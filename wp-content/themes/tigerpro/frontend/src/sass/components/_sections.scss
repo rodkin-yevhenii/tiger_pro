@@ -67,6 +67,14 @@
   }
 
   &-contacts {
+    .head {
+      margin-bottom: 0;
+      background-image: none;
+      background-color: transparent;
+    }
+  }
+
+  &-contacts__overlay {
     flex: 1;
     background-size: contain;
     background-position: bottom;
@@ -76,12 +84,6 @@
       background-position: bottom;
       background-size: contain;
       background-image: url("../../img/callback-mobile.png");
-    }
-
-    .head {
-      margin-bottom: 0;
-      background-image: none;
-      background-color: transparent;
     }
   }
 

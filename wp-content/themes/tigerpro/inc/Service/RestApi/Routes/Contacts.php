@@ -31,14 +31,12 @@ class Contacts
 
     public function contactsCallback(WP_REST_Request $request): array
     {
-        $phone = get_field('site_phone', 'option');
-        $email = get_field('site_email', 'option');
-        $messengers = get_field('messengers', 'option');
-
         return [
-            'phone' => $phone,
-            'email' => $email,
-            'messengers' => $messengers
+            'phone' => get_field('site_phone', 'option'),
+            'email' => get_field('site_email', 'option'),
+            'schedule' => get_field('site_schedule', 'option'),
+            'address' => get_field('site_address', 'option'),
+            'messengers' => get_field('messengers', 'option')
         ];
     }
 
