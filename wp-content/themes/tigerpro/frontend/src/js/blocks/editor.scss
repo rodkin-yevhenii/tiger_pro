@@ -1,0 +1,29 @@
+@import "~@fancyapps/fancybox/dist/jquery.fancybox.min.css";
+@import "~magnific-popup";
+@import "~slick-carousel/slick/slick.css";
+
+@import "../../sass/base/mixins";
+@import "../../sass/base/variables";
+@import "../../sass/base/editor-typography";
+@import "../../sass/base/base";
+@import "../../sass/base/icons";
+
+@import "../../sass/fonts";
+
+@import "../../sass/layout";
+
+@import "../../sass/components";
+@import "../../sass/components/sections";
+@import "../../sass/components/article";
+@import "../../sass/components/header";
+@import "../../sass/components/form";
+@import "../../sass/components/sliders";
+@import "../../sass/components/card";
+@import "../../sass/components/popup";
+@import "../../sass/components/menu-mobile";
+@import "../../sass/components/contacts";
+@import "../../sass/components/callback";
+
+@import "../../sass/components/footer";
+
+@import "../../sass/base/utilities";

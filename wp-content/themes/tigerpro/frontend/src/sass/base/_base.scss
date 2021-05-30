@@ -31,7 +31,7 @@ html {
   }
 }
 
-body {
+body:not(.wp-admin) {
   font-family: $font-primary;
   color: $color-primary-dark;
   font-size: 1.9rem;
