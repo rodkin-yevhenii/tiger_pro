@@ -41,4 +41,14 @@ class BlockRendererFactory
     {
         return new ContactInfo\RenderCallback();
     }
+
+    /**
+     * Register contact form callback.
+     *
+     * @return PagesCards\RenderCallback
+     */
+    public static function renderPagesCardsMarkUp(): PagesCards\RenderCallback
+    {
+        return new PagesCards\RenderCallback();
+    }
 }

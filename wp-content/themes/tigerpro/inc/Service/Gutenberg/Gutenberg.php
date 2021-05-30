@@ -205,5 +205,21 @@ class Gutenberg
                 ],
             ]
         );
+
+        $this->registerBlockType(
+            'pages-cards',
+            BlockRendererFactory::renderPagesCardsMarkUp(),
+            [
+                'attributes' => [
+                    'cards' => [
+                        'type' => 'array',
+                        'default' => [],
+                        'items' => [
+                            'type' => 'object',
+                        ],
+                    ]
+                ],
+            ]
+        );
     }
 }
