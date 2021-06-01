@@ -1,0 +1,46 @@
+.wp-block-tiger-pro-image-left {
+    article {
+        div {
+            justify-content: start !important;
+        }
+
+        p {
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+
+            &:last-child {
+                margin-bottom: 0 !important;
+            }
+
+            &:first-child {
+                margin-top: 0 !important;
+            }
+        }
+
+        h3 {
+            margin-top: 2.5rem !important;
+            margin-bottom: 1rem !important;
+
+            &:first-child {
+                margin-top: 0 !important;
+            }
+        }
+
+        ul {
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+
+            &:first-child {
+                margin-top: 0 !important;
+            }
+        }
+    }
+
+    .img {
+        flex-flow: column nowrap;
+
+        img {
+            margin-bottom: 1.5rem;
+        }
+    }
+}
