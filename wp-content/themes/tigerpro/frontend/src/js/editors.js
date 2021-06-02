@@ -1,5 +1,6 @@
 import './editor.scss'
 
+import './blocks/advantages'
 import './blocks/contacts'
 import './blocks/contacts-info'
 import './blocks/definition'

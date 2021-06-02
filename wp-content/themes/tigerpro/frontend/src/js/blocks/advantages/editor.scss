@@ -1,0 +1,54 @@
+.wp-block-tiger-pro-advantages {
+    .subheading-list>[class~='subheading'] {
+        margin-bottom: 0;
+    }
+
+    .subheading-list>[class~='subheading']:not(:last-child) {
+        margin-bottom: 4.8rem;
+    }
+
+    .remove-item {
+        margin-right: 15px;
+    }
+
+    .article {
+        .block-editor-block-list__layout {
+            flex-direction: column;
+        }
+
+        p {
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+
+            &:last-child {
+                margin-bottom: 0 !important;
+            }
+
+            &:first-child {
+                margin-top: 0 !important;
+            }
+        }
+
+        h3 {
+            margin-top: 2.5rem !important;
+            margin-bottom: 1rem !important;
+
+            &:first-child {
+                margin-top: 0 !important;
+            }
+        }
+
+        ul {
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+
+            &:first-child {
+                margin-top: 0 !important;
+            }
+        }
+    }
+
+    .block-title {
+        margin-bottom: 5rem !important;
+    }
+}
