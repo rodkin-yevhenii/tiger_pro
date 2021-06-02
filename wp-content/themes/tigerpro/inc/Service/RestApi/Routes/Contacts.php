@@ -24,7 +24,8 @@ class Contacts
             '/contacts',
             [
                 'methods'  => 'GET',
-                'callback' => [$this, 'contactsCallback']
+                'callback' => [$this, 'contactsCallback'],
+                'permission_callback' => '__return_true'
             ]
         );
     }
