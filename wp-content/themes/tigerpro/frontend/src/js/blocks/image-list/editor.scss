@@ -1,0 +1,13 @@
+.wp-block-tiger-pro-image-list {
+    .img {
+        flex-flow: column nowrap;
+
+        img {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    .block-title {
+        margin-bottom: 5rem !important;
+    }
+}

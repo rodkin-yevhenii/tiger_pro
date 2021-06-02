@@ -2,6 +2,40 @@
     max-width: 100%;
 }
 
+.remove-item {
+    font-size: 14px;
+    line-height: 28px;
+    color: #fff;
+    background: #a21111;
+    display: flex;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    border: 1px solid #444;
+}
+
+.remove-item:hover {
+    background: #f00;
+}
+
+.add-item {
+    font-size: 14px;
+    line-height: 28px;
+    color: #fff;
+    background: #008a2b;
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 17px;
+    border: 1px solid #fff;
+}
+
+.add-item:hover {
+    background: #009a33;
+}
+
 .editor-post-title__input {
     text-align: center;
 }
