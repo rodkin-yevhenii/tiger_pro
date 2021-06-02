@@ -131,6 +131,7 @@ class ThemeInit
     {
         add_image_size('our-works', 328, 272, true);
         add_image_size('cards', 326, 454, true);
+        add_image_size('slider', 178, 252, true);
     }
 
     /**

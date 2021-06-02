@@ -1,0 +1,47 @@
+.wp-block-tiger-pro-slider {
+    .gallery {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: start;
+    }
+
+    .section__slider {
+        width: 100%;
+        padding-bottom: 5px;
+        overflow: visible;
+    }
+
+    .slider__item {
+        position: relative;
+        width: 25%;
+        padding: .6rem;
+
+        .remove-item {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            z-index: 10;
+        }
+
+        .remove-slide {
+            position: absolute;
+            bottom: calc(50% - 18px);
+            left: calc(50% - 55px);
+            z-index: 10;
+            background-color: #fff;
+        }
+    }
+
+    .card {
+        min-width: auto;
+        margin: 0;
+        padding: 0;
+        color: #444;
+        border: 0;
+
+        p {
+            font-weight: 600;
+            text-align: center;
+        }
+    }
+}
