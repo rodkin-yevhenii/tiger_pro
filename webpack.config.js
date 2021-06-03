@@ -117,6 +117,7 @@ module.exports = (env, argv) => {
     entry: {
       jquery: 'jquery',
       main: './js/index.js',
+      slider: './js/slider.js',
       blocks: './js/blocks.js',
       editor: './js/editors.js',
     },

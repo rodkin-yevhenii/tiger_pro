@@ -109,14 +109,19 @@ class Assets
     private function getScriptsArray(): array
     {
         $scripts[] = [
+            'handle' => 'slider',
+            'src' => DIST_URI . 'js/slider.js',
+            'deps' => 'jquery'
+        ];
+        $scripts[] = [
             'handle' => 'tiger',
             'src' => DIST_URI . 'js/main.js',
-            'deps' => 'jquery'
+            'deps' => 'slider'
         ];
         $scripts[] = [
             'handle' => 'gb-scripts',
             'src' => DIST_URI . 'js/blocks.js',
-            'deps' => 'jquery'
+            'deps' => 'slider'
         ];
 
 
