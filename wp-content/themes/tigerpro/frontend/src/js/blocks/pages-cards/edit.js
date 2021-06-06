@@ -45,7 +45,7 @@ export default class Edit extends Component {
     }
 
     // eslint-disable-next-line no-undef
-    fetch(this.state.siteUrl + 'wp-json/wp/v2/pages')
+    fetch('/wp-json/wp/v2/pages')
       .then((response) => {
         return response.json()
       })
@@ -83,7 +83,7 @@ export default class Edit extends Component {
 
   async getPageData (id) {
     // eslint-disable-next-line no-undef
-    const response = await fetch(this.state.siteUrl + 'wp-json/wp/v2/pages/' + id)
+    const response = await fetch('/wp-json/wp/v2/pages/' + id)
     const page = await response.json()
 
     if (parseInt(page.id) !== parseInt(id)) {
@@ -101,14 +101,14 @@ export default class Edit extends Component {
 
   async getThumbnailUrl (pageId) {
     // eslint-disable-next-line no-undef
-    const response = await fetch(this.state.siteUrl + 'wp-json/wp/v2/media?parent=' + pageId)
+    const response = await fetch('/wp-json/wp/v2/media?parent=' + pageId)
     const images = await response.json()
 
     if (images.length < 1) {
       return ''
     }
 
-    return images[0].media_details.sizes.cards.source_url
+    return images[0].media_details.sizes.cards.source_url ?? null
   }
 
   render () {

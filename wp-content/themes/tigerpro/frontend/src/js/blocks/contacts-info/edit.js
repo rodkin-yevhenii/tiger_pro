@@ -18,7 +18,7 @@ export default class Edit extends Component {
     this.setState({ loadDefaultText: __('Загрузка...', 'tiger') })
 
     // eslint-disable-next-line no-undef
-    fetch('http://tiger.pro/wp-json/tiger/v1/contacts')
+    fetch('/wp-json/tiger/v1/contacts')
       .then((response) => {
         return response.json()
       })
