@@ -47,4 +47,9 @@
     .block-title {
         margin-bottom: 5rem !important;
     }
+
+    .block-editor-block-list__layout {
+        display: flex;
+        flex-flow: wrap column;
+    }
 }
