@@ -5,14 +5,17 @@ export default class Save extends Component {
   render () {
     const {
       heading,
-      imgUrl
+      imgUrl,
+      isFigureBackground
     } = this.props.attributes
 
     return (
       <>
         <section className='section section-faq'>
           <div className='section__overlay section__overlay--left u-tablet-hidden'><span /></div>
-          <div className='section__overlay section__overlay--right'><span /></div>
+          {isFigureBackground
+            ? <div className='section__figure section__figure--right'><span /></div>
+            : <div className='section__overlay section__overlay--right'><span /></div>}
           <div className='container'>
             <h2 className='heading heading--md heading--primary heading--mb-lg'>
               <span className='heading__inner'>{heading}</span>

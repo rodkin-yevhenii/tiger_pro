@@ -16,6 +16,10 @@ const attributes = {
   imgUrl: {
     type: 'string',
     default: ''
+  },
+  isFigureBackground: {
+    type: 'boolean',
+    default: false
   }
 }
 

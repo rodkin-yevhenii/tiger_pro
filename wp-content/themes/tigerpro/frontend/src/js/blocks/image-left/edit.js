@@ -1,8 +1,10 @@
 import { Component } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
-import { InnerBlocks } from '@wordpress/block-editor'
+import { InnerBlocks, InspectorControls } from '@wordpress/block-editor'
 import Image from '../components/image'
 import SectionHeading from '../components/section-heading'
+
+import { PanelBody, PanelRow, ToggleControl } from '@wordpress/components'
 
 export default class Edit extends Component {
   constructor (props) {
@@ -34,16 +36,34 @@ export default class Edit extends Component {
     const {
       heading,
       imgId,
-      imgUrl
+      imgUrl,
+      isFigureBackground
     } = attributes
 
     return (
       <>
         <div className={className}>
+          <InspectorControls>
+            <PanelBody
+              title={__('Настройки фона', 'tiger')}
+            >
+              <PanelRow>
+                <ToggleControl
+                  label='Использовать фигурный фон?'
+                  checked={isFigureBackground}
+                  onChange={() => {
+                    this.setAttributes({ isFigureBackground: !isFigureBackground })
+                  }}
+                />
+              </PanelRow>
+            </PanelBody>
+          </InspectorControls>
           <div className='block-title'>{__('Блок с изображение слева и контентом справа', 'tiger')}</div>
           <section className='section section-faq'>
             <div className='section__overlay section__overlay--left u-tablet-hidden'><span /></div>
-            <div className='section__overlay section__overlay--right'><span /></div>
+            {isFigureBackground
+              ? <div className='section__figure section__figure--right'><span /></div>
+              : <div className='section__overlay section__overlay--right'><span /></div>}
             <div className='container'>
               <SectionHeading
                 heading={heading}
