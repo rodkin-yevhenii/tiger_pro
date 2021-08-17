@@ -65,9 +65,9 @@ export default class Edit extends Component {
       <>
         <div className={className}>
           <div className='block-title'>{__('Блок с изображение слева и списком справа', 'tiger')}</div>
-          <section className='section section-about'>
-            <div className='section__overlay section__overlay--left u-tablet-hidden u-tablet-hidden'><span /></div>
-            <div className='section__figure section__figure--right'><span /></div>
+          <section className='section section-steps'>
+            <div className='section__overlay section__overlay--left u-tablet-hidden'><span /></div>
+            <div className='section__overlay section__overlay--right'><span /></div>
             <div className='container'>
               <SectionHeading
                 heading={heading}

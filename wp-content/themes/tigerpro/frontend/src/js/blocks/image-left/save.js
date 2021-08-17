@@ -10,9 +10,9 @@ export default class Save extends Component {
 
     return (
       <>
-        <section className='section section-about'>
-          <div className='section__overlay section__overlay--left u-tablet-hidden u-tablet-hidden'><span /></div>
-          <div className='section__figure section__figure--right'><span /></div>
+        <section className='section section-faq'>
+          <div className='section__overlay section__overlay--left u-tablet-hidden'><span /></div>
+          <div className='section__overlay section__overlay--right'><span /></div>
           <div className='container'>
             <h2 className='heading heading--md heading--primary heading--mb-lg'>
               <span className='heading__inner'>{heading}</span>
